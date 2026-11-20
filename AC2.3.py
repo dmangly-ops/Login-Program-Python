@@ -1,3 +1,5 @@
+import getpass
+
 users = {"user1": "password1", "user2": "password2"}
 
 
@@ -14,7 +16,8 @@ def login():
     for attempt in range(1, attempts + 1):
         #Prompt user for username and password and validate them
         username = input("Enter your username: ").strip()
-        password = input("Enter your password: ").strip()
+	#using getpass to hide the password input securely
+        password = getpass.getpass("Enter your password: ").strip()
 
         #check whether both fields have been completed before proceeding with authentication.
         if not username or not password:
