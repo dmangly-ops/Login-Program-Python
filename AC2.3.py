@@ -6,7 +6,7 @@ users = {"user1": "password1", "user2": "password2", "audreym": "password3"}
 def login():
     attempts = 3
     for attempt in range(1, attempts + 1):
-	#convert username input to lowercase tand strip whitespaces immediately
+	#convert username input to lowecase to allow case-insensitive matching
         username = input("Enter your username: ").strip().lower()
         password = getpass.getpass("Enter your password: ").strip()
 
@@ -23,7 +23,7 @@ def login():
         if remaining > 0:
             print(f"Invalid username or password. You have {remaining} attempt(s) left.\n")
         else:
-            print("Sorry! Access denied: Too many incorrect attempts. Login session locked.")
+            print("Too many incorrect attempts. Login session locked.")
 
 # Example usage
 login()
