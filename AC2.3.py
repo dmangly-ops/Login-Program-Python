@@ -6,7 +6,7 @@ users = {"user1": "password1", "user2": "password2", "audreym": "password3"}
 def login():
     attempts = 3
     for attempt in range(1, attempts + 1):
-	#convert username input to lowercase tand strip whitespaces immediately
+	#convert username input to lowercase and strip whitespaces immediately
         username = input("Enter your username: ").strip().lower()
         password = getpass.getpass("Enter your password: ").strip()
 
