@@ -1,6 +1,6 @@
 import getpass
 
-users = {"user1": "password1", "user2": "password2"}
+users = {"user1": "password1", "user2": "password2", "AudreyM": "password3"}
 
 def login():
     attempts = 3
