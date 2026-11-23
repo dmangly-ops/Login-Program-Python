@@ -1,13 +1,32 @@
 import getpass
 
-#using lowercase keys to support case-insensitive lookups
+# Using lowercase keys to support case-insensitive lookups
 users = {"user1": "password1", "user2": "password2", "audreym": "password3", "manglya": "password4"}
 
 def login():
     attempts = 3
     for attempt in range(1, attempts + 1):
-	    #convert username input to lowercase and strip whitespaces immediately
+        # Convert username input to lowercase and strip whitespaces immediately
         username = input("Enter your username: ").strip().lower()
+
+        # If username doesn't exist, offer to register it
+        if username and username not in users:
+            register = input(f"Username '{username}' not found. Would you like to register? (yes/no): ").strip().lower()
+            if register == 'yes':
+                # Adding a hint to explain password masking to user
+                print("[Hint: Characters will not be visible on screen while typing for security]")
+                new_password = getpass.getpass("Create a password for your new account: ").strip()
+                if len(new_password) < 7:
+                    print("Sorry! Your registration has failed. Password must be at least 7 characters long for security.\n")
+                elif new_password:
+                    users[username] = new_password
+                    print(f"Congratulations! You have successfully registered! You can now log in.\n")
+                else:
+                    print("Password field cannot be empty. Your registration is cancelled.\n")
+            continue
+
+        # Hint for secure password entry during login
+        print("[Hint: Characters will not be visible on screen while typing for security]")
         password = getpass.getpass("Enter your password: ").strip()
 
         if not username or not password:
@@ -18,7 +37,7 @@ def login():
         if users.get(username) == password:
             print(f"Login successful! Welcome, {username}!\n")
             return
-        
+
         remaining = attempts - attempt
         if remaining > 0:
             print(f"Invalid username or password. You have {remaining} attempt(s) left.\n")
