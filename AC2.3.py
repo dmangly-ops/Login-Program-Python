@@ -1,12 +1,12 @@
 import getpass
 
 #using lowercase keys to support case-insensitive lookups
-users = {"user1": "password1", "user2": "password2", "audreym": "password3"}
+users = {"user1": "password1", "user2": "password2", "audreym": "password3", "manglya": "password4"}
 
 def login():
     attempts = 3
     for attempt in range(1, attempts + 1):
-	#convert username input to lowercase and strip whitespaces immediately
+	    #convert username input to lowercase and strip whitespaces immediately
         username = input("Enter your username: ").strip().lower()
         password = getpass.getpass("Enter your password: ").strip()
 
@@ -16,7 +16,7 @@ def login():
 
         # Securely authenticate using dictionary lookup in a single step
         if users.get(username) == password:
-            print("Login successful!")
+            print(f"Login successful! Welcome, {username}!\n")
             return
         
         remaining = attempts - attempt
